@@ -86,35 +86,19 @@
   </form>
   
   <script>
-    async function submitForm(event) {
-      event.preventDefault();
-      
-      const form = document.getElementById('free-class-form');
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-  
-      // Send data to the server
-      try {
-        const response = await fetch('/try-class', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-  
-        if (response.ok) {
-          alert('Form submitted successfully!');
-          form.reset();
-        } else {
-          alert('Form submission failed. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('There was an error submitting the form.');
-      }
-    }
-  </script>
+  async function submitForm(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('free-class-form');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Save data to local storage
+    localStorage.setItem('freeClassFormData', JSON.stringify(data));
+    alert('Form data saved locally!');
+    form.reset();
+  }
+</script>
       </div>
       
     </div>
